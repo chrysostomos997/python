@@ -1,0 +1,70 @@
+from art import logo
+from art import vs
+from game_data import data
+import random
+from replit import clear
+
+
+
+def get_random_account():
+  """Get random account"""
+  return random.choice(data)
+
+
+is_correct=True  
+score = 0
+random_choice1 = get_random_account()
+random_choice2 = get_random_account()
+
+while  is_correct:
+    
+  
+    print(logo)
+    
+    random_choice1 = random_choice2 
+    random_choice2 = get_random_account()
+
+    while random_choice1 == random_choice2 :
+      random_choice2  = get_random_account()
+    
+
+
+
+
+
+ 
+    if score !=0:
+        print(f"You are right,your current score {score}")
+    print(f"Compare A: {random_choice1['name']},{random_choice1['description']},from {random_choice1['country']}")
+    
+    print(vs)
+    
+    
+    print(f"Against B: {random_choice2['name']},{random_choice2['description']},from {random_choice2['country']}")
+    
+    choose=input("Who has more followers? Type 'A' or 'B':")
+    
+    
+    
+    
+    def compare(random_choice1,random_choice2,choose):
+      if random_choice1['follower_count'] > random_choice2['follower_count']:
+        return choose == 'A'
+      else:
+        return choose == 'B'
+    
+    
+    is_correct = compare(random_choice1,random_choice2,choose)
+    
+    
+    
+    if is_correct: 
+      score +=1
+      
+      clear()
+    else:
+      print(f"Sorry, that's wrong. Final score {score}")
+      is_correct=False 
+      
+    
+    
